@@ -4,10 +4,13 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  Dimensions,
+  Platform,
 } from 'react-native';
 import Post from './components/Post';
 import '../ReactotronConfig';
 import styles from './styles';
+
 
 const POST_EXAMPLE = {
   id: 1,
@@ -15,12 +18,14 @@ const POST_EXAMPLE = {
   author: '@cleandersonlobo',
   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra ullamcorper dolor tempor interdum. Morbi sagittis non elit non ullamcorper. Integer id magna lacinia, semper justo sed, congue odio.',
 };
+const HEIGHT_SCREEN = Dimensions.get('window').height;
 export default class App extends Component {
   state = {
     posts: [
       POST_EXAMPLE,
     ],
   };
+  _getScrollTo = heightScroll => ((Platform.OS === 'ios') ? ((heightScroll + 40) - HEIGHT_SCREEN) : heightScroll);
   addPost = () => {
     this.setState({
       posts: [
@@ -51,7 +56,9 @@ export default class App extends Component {
         <ScrollView
           ref={(c) => { this.scrollView = c; }}
           onContentSizeChange={(width, height) => {
-            this.scrollView.scrollTo({ y: height, animated: true });
+            if (height < HEIGHT_SCREEN) return false;
+            const scrrolTo = this._getScrollTo(height);
+            this.scrollView.scrollTo({ y: scrrolTo, animated: true });
           }}
         >
           {this.state.posts.map(post => <Post key={post.id} post={post} />)}
