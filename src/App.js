@@ -4,13 +4,12 @@ import {
   Text,
   View,
   ScrollView,
-  Icon,
-  TouchableOpacity
+  TouchableOpacity, 
 } from 'react-native';
 import Post from './components/Post';
-
+import Reactotron from 'reactotron-react-native';
 const POST_EXAMPLE = {
-    id: Math.random(),
+    id: 1,
     title: 'Aprendendo React Native',
     author: '@cleandersonlobo',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra ullamcorper dolor tempor interdum. Morbi sagittis non elit non ullamcorper. Integer id magna lacinia, semper justo sed, congue odio.'
@@ -21,14 +20,21 @@ export default class App extends Component {
       POST_EXAMPLE
     ],
   }
+  generateId = () => (this.state.posts.length+1);
   addPost = () => {
       this.setState({
         posts:[
           ...this.state.posts,
-          POST_EXAMPLE
+          {
+            id: this.generateId(),
+            title: 'Aprendendo React Native',
+            author: '@cleandersonlobo',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra ullamcorper dolor tempor interdum. Morbi sagittis non elit non ullamcorper. Integer id magna lacinia, semper justo sed, congue odio.'
+          }
         ],
       })
   }
+  
   render() {
     return (
       <View style={styles.container}>
@@ -42,7 +48,11 @@ export default class App extends Component {
             </TouchableOpacity>
           </View>
         </View>
-        <ScrollView>
+        <ScrollView 
+          ref='scrollView'
+          onContentSizeChange={(width,height) => {
+            this.refs.scrollView.scrollTo({x:width,y:height,animated:true});
+          }}>
           {this.state.posts.map(post => (<Post key={post.id} post={post}/>))}
         </ScrollView>
       </View>

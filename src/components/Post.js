@@ -6,6 +6,9 @@ export default class Post extends Component {
       const {post} = this.props;
     return (
       <View style={styles.container}>
+        <View>
+            <Text style={styles.title}>#{post.id}</Text>
+        </View>
         <View style={styles.titleContent}>
             <Text style={styles.title}>{post.title}</Text>
             <Text style={styles.author}>{post.author}</Text>
