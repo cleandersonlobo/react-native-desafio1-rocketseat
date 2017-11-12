@@ -43,7 +43,7 @@ react-native run-android
 ```
 
 ### Screenshots
-![Main screen](screen.png)
+![Main screen](screen.gif)
 
 
 ## Thanks 
