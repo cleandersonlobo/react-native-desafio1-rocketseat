@@ -1,0 +1,3 @@
+rootProject.name = 'GNDesafio1'
+
+include ':app'
