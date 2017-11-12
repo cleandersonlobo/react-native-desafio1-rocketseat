@@ -1,0 +1,16 @@
+/**
+ * Color used in the project
+ */
+
+const BACKGROUND_SCREEN = '#EE7777';
+const BACKGROUND_WHITE = '#FFF';
+const TITLE_HEADER = '#424242';
+const TITLE_CARD = '#333333';
+const SHADOW_COLOR = '#DA6C6C';
+const AUTHOR = '#999999';
+const TEXTO_CARD = '#666666';
+const BORDER_DEFAULT = '#eee';
+
+export default {
+  BACKGROUND_SCREEN, TITLE_HEADER, BACKGROUND_WHITE, SHADOW_COLOR, TITLE_CARD, AUTHOR, TEXTO_CARD, BORDER_DEFAULT,
+};
